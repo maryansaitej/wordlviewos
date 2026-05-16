@@ -1,0 +1,51 @@
+export const principles = {
+  stoicism: [
+    "I focus on what I can control.",
+    "I separate events from my judgments.",
+    "I practice resilience before life demands it.",
+    "I choose character over applause.",
+    "I accept reality before I try to improve it.",
+  ],
+  buddhism: [
+    "I notice pain without becoming the pain.",
+    "I do not attach my peace to outcomes.",
+    "I let go of what I cannot keep.",
+    "I respond with compassion where possible.",
+    "I watch craving before obeying it.",
+  ],
+  existentialism: [
+    "I create meaning through action.",
+    "I choose deliberately when certainty is unavailable.",
+    "I refuse to disappear into roles I did not choose.",
+    "I take responsibility for the life I am shaping.",
+    "I let honesty matter more than comfort.",
+  ],
+  taoism: [
+    "I do not force what is not flowing.",
+    "I simplify before I struggle.",
+    "I move with timing instead of ego.",
+    "I leave space for life to unfold.",
+    "I let softness become strength.",
+  ],
+  pragmatism: [
+    "I ask what useful next step exists.",
+    "I test beliefs by their consequences.",
+    "I revise what does not work.",
+    "I prefer experiments to endless speculation.",
+    "I make ideas serve life.",
+  ],
+  absurdism: [
+    "I treat life seriously, but not too seriously.",
+    "I continue without needing final answers.",
+    "I laugh where despair wants control.",
+    "I make meaning without pretending the universe guaranteed it.",
+    "I choose aliveness over perfect explanation.",
+  ],
+  nietzschean: [
+    "I use difficulty as material for becoming stronger.",
+    "I create values I can embody.",
+    "I do not shrink to stay acceptable.",
+    "I transform resentment into power.",
+    "I become worthy of the life I want.",
+  ],
+};
