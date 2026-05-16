@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "A fully client-side personal philosophy and worldview builder.",
-  "homepage": "https://YOUR_GITHUB_USERNAME.github.io/worldview-os/",
+  "homepage": "https://maryansaitej.github.io/wordlviewos/",
   "type": "module",
   "scripts": {
     "dev": "vite",

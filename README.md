@@ -88,7 +88,7 @@ http://localhost:4173/
 
 ## GitHub Pages Deployment
 
-This project is configured for a repository named `worldview-os`.
+This project is configured for the current repository path `wordlviewos`.
 
 Before deploying, update these two places if your repository name is different:
 
@@ -116,12 +116,12 @@ git add .
 git commit -m "Build Worldview OS"
 ```
 
-4. Create a new public GitHub repository named `worldview-os`.
+4. Create or open the public GitHub repository named `wordlviewos`.
 
 5. Add the remote origin:
 
 ```bash
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/worldview-os.git
+git remote add origin https://github.com/maryansaitej/wordlviewos.git
 ```
 
 6. Push the main branch:
@@ -155,7 +155,7 @@ Folder: / (root)
 11. Your app will be available at:
 
 ```text
-https://YOUR_GITHUB_USERNAME.github.io/worldview-os/
+https://maryansaitej.github.io/wordlviewos/
 ```
 
 ### Option B: Deploy with GitHub Actions
