@@ -2,6 +2,10 @@ const KEYS = {
   history: "worldview-os-history",
   principles: "worldview-os-principles",
   theme: "worldview-os-theme",
+  reflections: "worldview-os-reflections",
+  responseChoices: "worldview-os-response-choices",
+  mode: "worldview-os-mode",
+  decisions: "worldview-os-decisions",
 };
 
 export function loadHistory() {
@@ -33,6 +37,63 @@ export function loadTheme() {
 
 export function saveTheme(theme) {
   write(KEYS.theme, theme);
+}
+
+export function loadReflections() {
+  return read(KEYS.reflections, []);
+}
+
+export function saveReflections(reflections) {
+  write(KEYS.reflections, reflections);
+}
+
+export function addReflection(reflection) {
+  const reflections = loadReflections();
+  const sameDayIndex = reflections.findIndex((item) => item.dateKey === reflection.dateKey);
+  const updated =
+    sameDayIndex >= 0
+      ? reflections.map((item, index) => (index === sameDayIndex ? reflection : item))
+      : [...reflections, reflection];
+  saveReflections(updated);
+  return updated;
+}
+
+export function loadResponseChoices() {
+  return read(KEYS.responseChoices, []);
+}
+
+export function saveResponseChoices(choices) {
+  write(KEYS.responseChoices, choices);
+}
+
+export function addResponseChoice(choice) {
+  const choices = loadResponseChoices();
+  const updated = [...choices, choice];
+  saveResponseChoices(updated);
+  return updated;
+}
+
+export function loadMode() {
+  return read(KEYS.mode, "default");
+}
+
+export function saveMode(mode) {
+  write(KEYS.mode, mode);
+}
+
+export function loadDecisions() {
+  return read(KEYS.decisions, []);
+}
+
+export function saveDecisions(decisions) {
+  write(KEYS.decisions, decisions);
+}
+
+export function addDecision(decision) {
+  const decisions = loadDecisions();
+  const updated = [decision, ...decisions].slice(0, 12);
+  saveDecisions(updated);
+  return updated;
 }
 
 export function resetAllData() {

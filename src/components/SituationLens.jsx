@@ -1,17 +1,16 @@
 import { philosophies, philosophyOrder } from "../data/philosophies";
 import { situations } from "../data/situations";
 
-export default function SituationLens({ activeSituation, setActiveSituation }) {
+export default function SituationLens({ activeSituation, setActiveSituation, responseChoices, onChooseResponse }) {
   const situation = situations[activeSituation];
+  const latestChoice = [...responseChoices].reverse().find((choice) => choice.situation === activeSituation);
 
   return (
     <section className="page-grid">
       <div className="panel">
         <p className="eyebrow">Situation Lens</p>
         <h2>One life moment, seven philosophical responses.</h2>
-        <p className="large-copy">
-          Choose a situation and compare how each lens would help you respond without needing advice from a server.
-        </p>
+        <p className="large-copy">Choose a situation, compare the lenses, then mark which perspective resonates. That choice becomes part of your behavioral worldview.</p>
         <div className="chip-grid">
           {Object.entries(situations).map(([id, item]) => (
             <button
@@ -29,6 +28,7 @@ export default function SituationLens({ activeSituation, setActiveSituation }) {
         <span className="manuscript-note">manuscript note</span>
         <h3>{situation.title}</h3>
         <p>{situation.note}</p>
+        {latestChoice && <div className="stone-callout">Last resonant lens: {philosophies[latestChoice.philosophyId].name}</div>}
       </div>
 
       {philosophyOrder.map((id) => (
@@ -38,6 +38,9 @@ export default function SituationLens({ activeSituation, setActiveSituation }) {
             {philosophies[id].name}
           </h3>
           <p>{situation.responses[id]}</p>
+          <button className="ghost-button" onClick={() => onChooseResponse(activeSituation, id)}>
+            This resonated
+          </button>
         </article>
       ))}
     </section>

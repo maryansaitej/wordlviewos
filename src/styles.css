@@ -12,6 +12,7 @@
   --gold: #a97835;
   --gold-dark: #775428;
   --stone: #8b887f;
+  --mode-accent: #a97835;
   --shadow: 0 18px 60px rgba(68, 50, 24, 0.13);
 }
 
@@ -27,7 +28,24 @@
   --gold: #c59248;
   --gold-dark: #dfb76e;
   --stone: #9d9485;
+  --mode-accent: #c59248;
   --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-mode="stoicism"] {
+  --mode-accent: #9f7440;
+}
+
+:root[data-mode="buddhism"] {
+  --mode-accent: #b58a35;
+}
+
+:root[data-mode="existentialism"] {
+  --mode-accent: #7d6f57;
+}
+
+:root[data-mode="taoism"] {
+  --mode-accent: #66836f;
 }
 
 * {
@@ -41,6 +59,7 @@ body {
   font-family: Inter, system-ui, sans-serif;
   background:
     radial-gradient(circle at top left, rgba(169, 120, 53, 0.16), transparent 34rem),
+    radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--mode-accent) 18%, transparent), transparent 22rem),
     linear-gradient(135deg, rgba(255, 255, 255, 0.16) 25%, transparent 25%) 0 0 / 18px 18px,
     var(--bg);
 }
@@ -223,6 +242,107 @@ main {
   color: #fffaf0;
   background: linear-gradient(135deg, var(--gold), var(--gold-dark));
   box-shadow: inset 0 0 0 2px rgba(255, 250, 240, 0.22), 0 12px 28px rgba(119, 84, 40, 0.22);
+}
+
+.sanctuary-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.sanctuary-panel::after {
+  position: absolute;
+  right: 28px;
+  bottom: -26px;
+  color: color-mix(in srgb, var(--mode-accent) 24%, transparent);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 12rem;
+  line-height: 1;
+  content: "◈";
+  pointer-events: none;
+}
+
+.reflection-hero {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--mode-accent) 12%, transparent), transparent),
+    var(--card);
+}
+
+.reflection-form {
+  grid-column: span 6;
+}
+
+.field-group,
+.journal-box {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.field-group > label,
+.journal-box > span,
+.range-row span {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.select-chip input {
+  position: absolute;
+  opacity: 0;
+}
+
+.select-chip span {
+  display: inline-flex;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card-soft);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.select-chip input:checked + span {
+  color: #fffaf0;
+  border-color: var(--mode-accent);
+  background: var(--mode-accent);
+}
+
+.slider-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.range-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card-soft);
+}
+
+.range-row input {
+  width: 100%;
+  accent-color: var(--mode-accent);
+}
+
+.journal-box textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--text);
+  background: var(--card-soft);
+  line-height: 1.6;
+}
+
+.history-journal,
+.decision-context {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
 }
 
 .ghost-button {
@@ -451,6 +571,16 @@ main {
   background: var(--card-soft);
 }
 
+.stone-callout {
+  margin-top: 16px;
+  padding: 16px;
+  border-left: 4px solid var(--mode-accent);
+  border-radius: 8px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--mode-accent) 10%, var(--card-soft));
+  line-height: 1.6;
+}
+
 .metric span {
   display: block;
   margin-bottom: 4px;
@@ -614,7 +744,7 @@ main {
 .chip.active,
 .chip:hover {
   color: #fffaf0;
-  background: var(--gold);
+  background: var(--mode-accent);
 }
 
 .situation-note {
@@ -627,6 +757,73 @@ main {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.lens-card,
+.decision-card,
+.mode-card,
+.contradiction-card {
+  display: grid;
+  gap: 14px;
+}
+
+.lens-card .ghost-button,
+.mode-card .ghost-button,
+.mode-card .seal-button {
+  justify-self: start;
+}
+
+.mode-card > span {
+  font-size: 2.8rem;
+}
+
+.mode-card.active {
+  border-color: var(--mode-accent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--mode-accent) 14%, transparent), transparent),
+    var(--card);
+}
+
+.life-area-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.life-area-row {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+.life-area-row p {
+  margin: 0;
+}
+
+.replay-panel,
+.snapshot-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(24px, 5vw, 46px);
+  background:
+    radial-gradient(circle at 78% 14%, color-mix(in srgb, var(--mode-accent) 20%, transparent), transparent 16rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent),
+    var(--card);
+  box-shadow: var(--shadow);
+}
+
+.snapshot-card {
+  grid-column: 2 / -2;
+  text-align: center;
+}
+
+.snapshot-card .chart-wrap {
+  margin: 20px auto;
+  max-width: 760px;
 }
 
 .empty-state {
@@ -676,6 +873,15 @@ main {
   .process-card {
     grid-column: span 6;
   }
+
+  .slider-grid,
+  .life-area-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .snapshot-card {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 640px) {
@@ -690,7 +896,9 @@ main {
 
   .process-card,
   .mini-grid,
-  .code-toggle-grid {
+  .code-toggle-grid,
+  .slider-grid,
+  .life-area-grid {
     grid-column: 1 / -1;
     grid-template-columns: 1fr;
   }

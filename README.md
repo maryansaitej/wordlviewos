@@ -1,15 +1,24 @@
 # Worldview OS
 
-Worldview OS is a fully client-side philosophy and self-understanding app. It helps users answer reflective questions, discover a weighted Philosophy Stack, track how that worldview changes over time, and build a personal “Worldview Code” from practical principles.
+Worldview OS is a fully client-side philosophy-powered life navigation app. It helps users reflect daily, notice emotional patterns, compare philosophical responses to real situations, make decisions through multiple lenses, detect worldview contradictions, and build a personal “Worldview Code” from practical principles.
 
 No backend, authentication, API keys, paid APIs, or LLM calls are used. Data persists in `localStorage`.
 
 ## Features
 
+- Daily Reflection engine with rotating prompts, mood tracking, emotional tags, sliders, journaling, and history
+- Behavioral Worldview Tracking based on reflections, moods, selected principles, and resonant philosophy responses
+- Life-area philosophy profiles for Work, Relationships, Emotional Life, Creativity, Spirituality, Discipline, and Identity
+- Contradiction engine for tensions like freedom vs uncertainty, discipline vs avoidance, peace vs validation
+- Philosophy Response System that lets users mark which perspective resonated
+- Philosophy Modes that subtly shift accenting and prompt bias
+- Weekly Philosophy Replay with emotional weather, response patterns, strongest principles, and tensions
+- Decision Lens with structured philosophy frameworks for dilemmas
+- Shareable Worldview Snapshot cards and text export
 - 25-question onboarding quiz with weighted scoring
 - Philosophy Stack percentages across Stoicism, Buddhism, Existentialism, Taoism, Pragmatism, Absurdism, and Nietzschean philosophy
 - Dominant, secondary, and blind-spot philosophy summaries
-- Worldview evolution dashboard with saved quiz snapshots
+- Worldview evolution dashboard with quiz baseline plus behavioral evolution
 - Recharts-powered stack and timeline charts
 - Philosophy explorer with editable/toggleable principles
 - Worldview Code page with copy, text export, and reset controls
@@ -23,12 +32,12 @@ No backend, authentication, API keys, paid APIs, or LLM calls are used. Data per
 The app is intentionally simple:
 
 - `src/data/` contains editable product content.
-- `src/utils/` contains scoring, localStorage, and export helpers.
+- `src/utils/` contains scoring, behavioral analytics, contradiction analysis, localStorage, and export helpers.
 - `src/components/` contains the major app screens.
-- `src/App.jsx` manages navigation, state, persistence, and page composition.
+- `src/App.jsx` manages navigation, state, persistence, behavioral derivations, and page composition.
 - `src/styles.css` contains the complete visual system.
 
-The app uses internal React state for navigation instead of a router so it remains easy to deploy as a static GitHub Pages site.
+The quiz is now the onboarding layer. The core product is driven by daily reflections, selected principles, situation-response choices, and decision records. The app uses internal React state for navigation instead of a router so it remains easy to deploy as a static GitHub Pages site.
 
 ## Dependency Setup
 
@@ -159,21 +168,27 @@ You can also build with GitHub Actions and publish the `dist` folder. If you use
 - `src/data/philosophies.js`: philosophy explanations, symbols, strengths, and risks
 - `src/data/principles.js`: selectable Worldview Code principles
 - `src/data/situations.js`: prewritten Situation Lens content
+- `src/data/reflections.js`: daily prompts, moods, tags, and behavioral weights
+- `src/data/lifeAreas.js`: area-specific worldview profile definitions
+- `src/data/modes.js`: philosophy mode copy and accents
+- `src/data/decisions.js`: philosophy decision frameworks
 - `src/utils/scoring.js`: score calculation, percentages, summaries, and snapshots
+- `src/utils/analytics.js`: behavioral scoring, life-area profiles, contradictions, weekly replay, and snapshot text
 - `src/utils/storage.js`: localStorage persistence
 - `src/App.jsx`: app state and screen navigation
 - `src/styles.css`: full visual design and responsive layout
 
 ## Verification Checklist
 
-1. Open the app and click `Start My Worldview`.
-2. Complete all 25 questions.
-3. Confirm the Results page shows a Philosophy Stack, dominant philosophy, secondary philosophy, blind spot, strengths, risks, and suggestions.
-4. Open Evolution and confirm the latest attempt is saved.
-5. Retake the quiz and confirm the timeline chart updates.
-6. Open Explorer and toggle several principles.
-7. Open Code and confirm selected principles appear.
-8. Copy and export the Worldview Code.
-9. Open Situation Lens and switch between situations.
-10. Refresh the browser and confirm quiz history and principles persist.
-11. Toggle dark mode and confirm the preference persists.
+1. Open the app and write a Daily Reflection.
+2. Confirm the home screen shows Today’s signal.
+3. Open Situation Lens, choose a situation, and mark a response as resonant.
+4. Open Decision Lens, enter a dilemma, and save it.
+5. Open Evolution and confirm the Behavioral Worldview Stack and life-area profiles update.
+6. Open Contradictions and confirm tensions render.
+7. Open Weekly Replay and confirm emotional weather, response pattern, and strongest principles render.
+8. Open Snapshots and copy/export the current snapshot.
+9. Complete the onboarding quiz and confirm Results still works as a baseline.
+10. Open Explorer and toggle several principles, then confirm Code updates.
+11. Refresh the browser and confirm reflections, decisions, response choices, quiz history, principles, and theme persist.
+12. Toggle dark mode and a Philosophy Mode, then confirm the preference persists.

@@ -4,13 +4,13 @@ export default function Landing({ onStart, onNavigate }) {
       <div className="hero-grid">
         <div className="hero-copy">
           <p className="eyebrow">Worldview OS</p>
-          <h1>Build your personal philosophy for life.</h1>
+          <h1>Use philosophy to navigate life.</h1>
           <p className="hero-text">
-            A calm, private, client-side space for discovering the ideas that guide your choices,
-            tracking how they evolve, and turning them into a practical code for living.
+            A calm, private, client-side operating system for daily reflection, emotional awareness,
+            decisions, contradictions, and the philosophy you actually practice.
           </p>
           <div className="hero-actions">
-            <button className="seal-button" onClick={onStart}>Start My Worldview</button>
+            <button className="seal-button" onClick={() => onNavigate("reflection")}>Reflect Today</button>
             <button className="ghost-button" onClick={() => onNavigate("explorer")}>Explore Ideas</button>
           </div>
         </div>
@@ -46,10 +46,10 @@ export default function Landing({ onStart, onNavigate }) {
 
       <div className="process-row">
         {[
-          ["01", "Answer questions", "Reflect on ambition, suffering, freedom, meaning, and uncertainty."],
-          ["02", "Discover your stack", "See your philosophical tendencies as a living mix, not a fixed label."],
-          ["03", "Build your code", "Choose practical principles that become your personal operating system."],
-          ["04", "Track evolution", "Retake the quiz and watch your worldview change over time."],
+          ["01", "Reflect daily", "Record moods, emotional patterns, and the questions life is asking you."],
+          ["02", "Use lenses", "Compare how different philosophies approach anxiety, failure, grief, and decisions."],
+          ["03", "Notice tensions", "See where your desires conflict and what would balance them."],
+          ["04", "Track evolution", "Watch your worldview change through behavior, not just quiz answers."],
         ].map(([number, title, text]) => (
           <article className="process-card" key={number}>
             <span>{number}</span>

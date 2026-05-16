@@ -12,7 +12,7 @@ import { philosophies, philosophyOrder } from "../data/philosophies";
 import { describeTrends } from "../utils/scoring";
 import StackChart from "./StackChart";
 
-export default function Dashboard({ history, currentResult, onStart }) {
+export default function Dashboard({ history, currentResult, behavioralScores, lifeAreaProfiles, reflections, onStart }) {
   const chartData = history.map((snapshot, index) => ({
     name: `Attempt ${index + 1}`,
     date: new Date(snapshot.date).toLocaleDateString(),
@@ -25,14 +25,18 @@ export default function Dashboard({ history, currentResult, onStart }) {
       <div className="panel">
         <p className="eyebrow">Map of the self</p>
         <h2>Worldview Evolution</h2>
-        <p className="large-copy">
-          Every completed quiz becomes a dated snapshot, so your philosophy can be treated as a living pattern rather than a permanent label.
-        </p>
+        <p className="large-copy">Your worldview now evolves mostly from behavior: reflections, moods, selected principles, and the philosophical responses you actually choose.</p>
       </div>
 
       <div className="panel">
-        <h3>Current stack</h3>
-        {currentResult ? <StackChart stack={currentResult.stack} /> : <p>No quiz results yet.</p>}
+        <h3>Behavioral worldview stack</h3>
+        <StackChart stack={behavioralScores.stack} />
+        <p>{reflections.length} daily reflections are shaping this profile.</p>
+      </div>
+
+      <div className="panel">
+        <h3>Quiz baseline</h3>
+        {currentResult ? <StackChart stack={currentResult.stack} /> : <p>The quiz is now onboarding. Take it once to set a baseline.</p>}
       </div>
 
       <div className="panel wide-panel">
@@ -92,6 +96,24 @@ export default function Dashboard({ history, currentResult, onStart }) {
           ))}
         </div>
       </article>
+
+      <div className="panel wide-panel">
+        <h3>Life area philosophy profiles</h3>
+        <div className="life-area-grid">
+          {lifeAreaProfiles.map((area) => (
+            <article className="mini-tablet" key={area.id}>
+              <h4>{area.name}</h4>
+              {area.stack.map((item) => (
+                <div className="life-area-row" key={item.id}>
+                  <span style={{ color: item.accent }}>{item.symbol}</span>
+                  <p>{item.name}</p>
+                  <strong>{item.percentage}%</strong>
+                </div>
+              ))}
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

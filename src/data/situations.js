@@ -64,6 +64,19 @@ export const situations = {
       nietzschean: "Recover strength deliberately; exhaustion is not greatness.",
     },
   },
+  heartbreak: {
+    title: "Heartbreak",
+    note: "A broken attachment can still reveal a living heart.",
+    responses: {
+      stoicism: "Protect your conduct and dignity while accepting what cannot be controlled.",
+      buddhism: "Let the grief move without clinging to the person as the source of all peace.",
+      existentialism: "This ending does not decide your meaning; your next honest life does.",
+      taoism: "Do not force what has left its season. Let the river continue.",
+      pragmatism: "Care for your routines, remove needless triggers, and ask what support helps.",
+      absurdism: "Love is strange, loss is strange, and still you are invited back into life.",
+      nietzschean: "Do not let pain make you smaller. Let it deepen your capacity to become.",
+    },
+  },
   uncertainty: {
     title: "Uncertainty",
     note: "The unknown is not always an enemy; sometimes it is a doorway.",
@@ -127,6 +140,19 @@ export const situations = {
       pragmatism: "Find the smallest repair or decision that changes the pattern.",
       absurdism: "Some arguments are theater. Refuse the role that makes you smaller.",
       nietzschean: "Do not confuse cruelty with strength; speak with clean force.",
+    },
+  },
+  selfDoubt: {
+    title: "Self-doubt",
+    note: "The inner judge often speaks with borrowed authority.",
+    responses: {
+      stoicism: "Return to the next right action and let character answer insecurity.",
+      buddhism: "Notice the doubting thought as a passing event, not a final identity.",
+      existentialism: "You become yourself by choosing, not by waiting to feel fully legitimate.",
+      taoism: "Stop wrestling the mirror. Move simply and let confidence arrive later.",
+      pragmatism: "Gather evidence: what skill can you practice, what feedback can you use?",
+      absurdism: "Nobody received a perfect instruction manual. Continue anyway.",
+      nietzschean: "Treat doubt as resistance at the edge of self-overcoming.",
     },
   },
 };

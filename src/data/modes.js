@@ -1,0 +1,42 @@
+export const modes = {
+  default: {
+    id: "default",
+    name: "Sanctuary Mode",
+    symbol: "◈",
+    accent: "#a97835",
+    description: "Balanced guidance from the full philosophy stack.",
+    promptBias: "whole-life reflection",
+  },
+  stoicism: {
+    id: "stoicism",
+    name: "Stoic Mode",
+    symbol: "◈",
+    accent: "#9f7440",
+    description: "Discipline, response, composure, and marble-like steadiness.",
+    promptBias: "control, discipline, duty, resilience",
+  },
+  buddhism: {
+    id: "buddhism",
+    name: "Buddhist Mode",
+    symbol: "○",
+    accent: "#b58a35",
+    description: "Awareness, compassion, impermanence, and unclenching from attachment.",
+    promptBias: "attachment, craving, compassion, release",
+  },
+  existentialism: {
+    id: "existentialism",
+    name: "Existential Mode",
+    symbol: "□",
+    accent: "#7d6f57",
+    description: "Authenticity, responsibility, and choosing meaning without certainty.",
+    promptBias: "meaning, choice, honesty, responsibility",
+  },
+  taoism: {
+    id: "taoism",
+    name: "Taoist Mode",
+    symbol: "≈",
+    accent: "#66836f",
+    description: "Flow, timing, simplicity, and the wisdom of less forcing.",
+    promptBias: "flow, patience, simplicity, release",
+  },
+};
