@@ -173,6 +173,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="topbar">
         <button className="brand" onClick={() => setView("home")} aria-label="Worldview OS home">
           <span className="brand-mark">◈</span>
@@ -181,7 +182,12 @@ export default function App() {
 
         <nav className="main-nav" aria-label="Primary navigation">
           {navItems.map(([id, label]) => (
-            <button key={id} className={view === id ? "active" : ""} onClick={() => (id === "quiz" ? startQuiz() : setView(id))}>
+            <button
+              key={id}
+              aria-current={view === id ? "page" : undefined}
+              className={view === id ? "active" : ""}
+              onClick={() => (id === "quiz" ? startQuiz() : setView(id))}
+            >
               {label}
             </button>
           ))}
@@ -196,7 +202,7 @@ export default function App() {
         </button>
       </header>
 
-      <main>
+      <main id="main-content" tabIndex="-1">
         {view === "home" && (
           <CompanionHome
             behavioralScores={behavioralScores}

@@ -17,6 +17,7 @@
   --mode-accent: #a97835;
   --shadow: 0 24px 80px rgba(67, 45, 19, 0.14);
   --inner-line: inset 0 0 0 1px rgba(255, 255, 255, 0.52);
+  --focus: 0 0 0 4px color-mix(in srgb, var(--mode-accent) 28%, transparent);
 }
 
 :root[data-theme="dark"] {
@@ -36,6 +37,7 @@
   --mode-accent: #c59248;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
   --inner-line: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --focus: 0 0 0 4px color-mix(in srgb, var(--mode-accent) 38%, transparent);
 }
 
 :root[data-mode="stoicism"] {
@@ -91,6 +93,7 @@ a {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 a {
@@ -134,6 +137,36 @@ main {
   width: min(1220px, calc(100vw - 32px));
   margin: 0 auto;
   padding: 34px 0 78px;
+}
+
+main:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--mode-accent);
+  outline-offset: 3px;
+  box-shadow: var(--focus);
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 50;
+  transform: translateY(-140%);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: var(--text);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  font-weight: 800;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .app-shell {
@@ -197,6 +230,7 @@ main {
 .brand {
   display: inline-flex;
   gap: 10px;
+  min-height: 44px;
   align-items: center;
   font-weight: 800;
   font-size: 1.05rem;
@@ -223,11 +257,13 @@ main {
   justify-content: center;
   overflow-x: auto;
   scrollbar-width: none;
+  mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
 }
 
 .main-nav button {
   flex: 0 0 auto;
-  padding: 9px 13px;
+  min-height: 44px;
+  padding: 10px 14px;
   border-radius: 999px;
   color: var(--muted);
   font-size: 0.95rem;
@@ -243,8 +279,8 @@ main {
 }
 
 .theme-toggle {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 50%;
   background:
@@ -293,7 +329,7 @@ main {
 .seal-button,
 .ghost-button {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 48px;
   align-items: center;
   justify-content: center;
   padding: 12px 20px;
@@ -449,6 +485,8 @@ main {
 
 .select-chip span {
   display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   padding: 10px 13px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -930,6 +968,7 @@ main {
 }
 
 .chip {
+  min-height: 44px;
   padding: 10px 14px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -1068,6 +1107,7 @@ main {
     grid-column: 1 / -1;
     justify-content: flex-start;
     order: 3;
+    padding-bottom: 2px;
   }
 
   .hero-grid {
@@ -1198,5 +1238,16 @@ main {
 
   .oracle-dial span {
     font-size: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
   }
 }
