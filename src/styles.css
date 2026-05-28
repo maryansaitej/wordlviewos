@@ -1,35 +1,41 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&display=swap");
 
 :root {
   color-scheme: light;
-  --bg: #eee3cf;
-  --bg-2: #e6d8bd;
-  --card: #fffaf0;
-  --card-soft: #f7efdf;
-  --text: #29251f;
-  --muted: #766d5e;
-  --line: #d2c0a0;
-  --gold: #a97835;
-  --gold-dark: #775428;
-  --stone: #8b887f;
+  --bg: #eee4d0;
+  --bg-2: #d9c7a7;
+  --card: #fff8e8;
+  --card-soft: #f3ead7;
+  --text: #251f18;
+  --muted: #706655;
+  --line: #cdbb98;
+  --gold: #a87632;
+  --gold-dark: #73501f;
+  --stone: #858178;
+  --cinnabar: #9d4b3e;
+  --verdigris: #4f776c;
   --mode-accent: #a97835;
-  --shadow: 0 18px 60px rgba(68, 50, 24, 0.13);
+  --shadow: 0 24px 80px rgba(67, 45, 19, 0.14);
+  --inner-line: inset 0 0 0 1px rgba(255, 255, 255, 0.52);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #1c1a17;
-  --bg-2: #28231d;
-  --card: #24211d;
-  --card-soft: #2d2821;
-  --text: #f2e8d5;
-  --muted: #b9a98c;
-  --line: #4b4030;
-  --gold: #c59248;
-  --gold-dark: #dfb76e;
-  --stone: #9d9485;
+  --bg: #171512;
+  --bg-2: #262017;
+  --card: #211d18;
+  --card-soft: #2b251d;
+  --text: #f5ecd9;
+  --muted: #baa988;
+  --line: #534530;
+  --gold: #c89445;
+  --gold-dark: #e0b86f;
+  --stone: #a19886;
+  --cinnabar: #c16d5e;
+  --verdigris: #7ea496;
   --mode-accent: #c59248;
-  --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+  --inner-line: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 :root[data-mode="stoicism"] {
@@ -56,12 +62,26 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--text);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: "Alegreya Sans", "Trebuchet MS", sans-serif;
+  font-size: 18px;
   background:
-    radial-gradient(circle at top left, rgba(169, 120, 53, 0.16), transparent 34rem),
+    radial-gradient(circle at 10% -10%, rgba(157, 75, 62, 0.13), transparent 32rem),
     radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--mode-accent) 18%, transparent), transparent 22rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.16) 25%, transparent 25%) 0 0 / 18px 18px,
+    linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 18px),
+    linear-gradient(90deg, rgba(70, 54, 28, 0.05) 0 1px, transparent 1px 9px),
     var(--bg);
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(72, 48, 20, 0.035) 0 1px, transparent 1px 5px),
+    radial-gradient(circle at 50% 0, rgba(255, 248, 232, 0.45), transparent 45rem);
+  mix-blend-mode: multiply;
+  content: "";
 }
 
 button,
@@ -83,17 +103,18 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  line-height: 0.95;
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 0.9;
+  font-weight: 650;
 }
 
 h1 {
   max-width: 760px;
-  font-size: clamp(4rem, 10vw, 8.7rem);
+  font-size: 7.2rem;
 }
 
 h2 {
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: 4.4rem;
 }
 
 h3 {
@@ -106,13 +127,42 @@ h4 {
 
 p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.62;
 }
 
 main {
-  width: min(1180px, calc(100vw - 32px));
+  width: min(1220px, calc(100vw - 32px));
   margin: 0 auto;
-  padding: 38px 0 72px;
+  padding: 34px 0 78px;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-shell::before,
+.app-shell::after {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  color: color-mix(in srgb, var(--mode-accent) 18%, transparent);
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 1;
+}
+
+.app-shell::before {
+  top: 88px;
+  left: -42px;
+  font-size: 18rem;
+  content: "◐";
+}
+
+.app-shell::after {
+  right: -58px;
+  bottom: 18px;
+  font-size: 20rem;
+  content: "△";
 }
 
 .topbar {
@@ -123,10 +173,13 @@ main {
   grid-template-columns: auto 1fr auto;
   gap: 16px;
   align-items: center;
-  padding: 14px clamp(16px, 4vw, 44px);
+  padding: 14px 36px;
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
-  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(22px) saturate(1.2);
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--mode-accent) 8%, transparent), transparent),
+    color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: 0 10px 40px rgba(68, 45, 18, 0.08);
 }
 
 .brand,
@@ -146,6 +199,7 @@ main {
   gap: 10px;
   align-items: center;
   font-weight: 800;
+  font-size: 1.05rem;
 }
 
 .brand-mark {
@@ -155,8 +209,12 @@ main {
   place-items: center;
   color: var(--card);
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: inset 0 0 0 2px rgba(255, 250, 240, 0.38);
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.38), transparent 24%),
+    linear-gradient(135deg, var(--mode-accent), var(--gold-dark));
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 250, 240, 0.34),
+    0 10px 22px color-mix(in srgb, var(--mode-accent) 25%, transparent);
 }
 
 .main-nav {
@@ -169,15 +227,19 @@ main {
 
 .main-nav button {
   flex: 0 0 auto;
-  padding: 9px 12px;
+  padding: 9px 13px;
   border-radius: 999px;
   color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 800;
+  transition: color 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
 .main-nav button.active,
 .main-nav button:hover {
   color: var(--text);
-  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  background: color-mix(in srgb, var(--mode-accent) 14%, transparent);
+  transform: translateY(-1px);
 }
 
 .theme-toggle {
@@ -185,7 +247,9 @@ main {
   height: 38px;
   border: 1px solid var(--line);
   border-radius: 50%;
-  background: var(--card);
+  background:
+    radial-gradient(circle at 34% 24%, color-mix(in srgb, var(--mode-accent) 18%, transparent), transparent 42%),
+    var(--card);
 }
 
 .landing {
@@ -207,14 +271,14 @@ main {
   color: var(--gold-dark);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .hero-text,
 .large-copy {
   max-width: 680px;
-  font-size: 1.08rem;
+  font-size: 1.16rem;
 }
 
 .hero-actions,
@@ -232,33 +296,126 @@ main {
   min-height: 46px;
   align-items: center;
   justify-content: center;
-  padding: 12px 18px;
+  padding: 12px 20px;
   border-radius: 999px;
   font-weight: 800;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .seal-button {
   color: #fffaf0;
-  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-  box-shadow: inset 0 0 0 2px rgba(255, 250, 240, 0.22), 0 12px 28px rgba(119, 84, 40, 0.22);
+  border: 1px solid color-mix(in srgb, var(--mode-accent) 76%, #2a1d12);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--mode-accent) 88%, #fff 4%), var(--gold-dark)),
+    var(--mode-accent);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 250, 240, 0.22),
+    0 16px 30px color-mix(in srgb, var(--mode-accent) 24%, transparent);
 }
 
 .sanctuary-panel {
   position: relative;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+  min-height: 440px;
+  padding: clamp(28px, 5vw, 56px);
   overflow: hidden;
+  isolation: isolate;
+  border: 1px solid color-mix(in srgb, var(--line) 84%, var(--mode-accent));
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 88% 12%, color-mix(in srgb, var(--mode-accent) 24%, transparent), transparent 18rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.32), transparent 42%),
+    var(--card);
+  box-shadow: var(--shadow), var(--inner-line);
+  animation: pageRise 680ms ease both;
 }
 
 .sanctuary-panel::after {
   position: absolute;
-  right: 28px;
-  bottom: -26px;
-  color: color-mix(in srgb, var(--mode-accent) 24%, transparent);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 12rem;
+  right: 12px;
+  bottom: -34px;
+  color: color-mix(in srgb, var(--mode-accent) 10%, transparent);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 16rem;
   line-height: 1;
   content: "◈";
   pointer-events: none;
+  z-index: -1;
+}
+
+.sanctuary-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.sanctuary-copy {
+  align-self: center;
+  max-width: 780px;
+}
+
+.oracle-dial {
+  position: relative;
+  display: grid;
+  align-self: center;
+  width: min(100%, 280px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--mode-accent) 44%, var(--line));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--mode-accent) 16%, transparent) 0 34%, transparent 35%),
+    conic-gradient(from 20deg, transparent 0 13%, color-mix(in srgb, var(--mode-accent) 24%, transparent) 13% 14%, transparent 14% 33%, color-mix(in srgb, var(--mode-accent) 18%, transparent) 33% 34%, transparent 34%),
+    color-mix(in srgb, var(--card-soft) 80%, transparent);
+  box-shadow: inset 0 0 0 12px color-mix(in srgb, var(--card) 68%, transparent), 0 24px 60px rgba(68, 45, 18, 0.1);
+}
+
+.oracle-dial span {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 5.8rem;
+  color: var(--mode-accent);
+}
+
+.oracle-dial i {
+  position: absolute;
+  inset: 28px;
+  border: 1px solid color-mix(in srgb, var(--mode-accent) 30%, transparent);
+  border-radius: 50%;
+}
+
+.oracle-dial i:nth-child(3) {
+  inset: 58px;
+}
+
+.oracle-dial i:nth-child(4) {
+  inset: 88px;
+}
+
+.sanctuary-ledger {
+  position: absolute;
+  right: 34px;
+  bottom: 30px;
+  width: min(330px, calc(100% - 68px));
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-row p {
+  margin: 0;
 }
 
 .reflection-hero {
@@ -299,6 +456,11 @@ main {
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 800;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.select-chip span:hover {
+  transform: translateY(-2px);
 }
 
 .select-chip input:checked + span {
@@ -319,7 +481,7 @@ main {
   gap: 10px;
   padding: 14px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--card-soft);
 }
 
@@ -332,11 +494,12 @@ main {
   width: 100%;
   resize: vertical;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 14px;
   color: var(--text);
   background: var(--card-soft);
   line-height: 1.6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .history-journal,
@@ -347,20 +510,24 @@ main {
 
 .ghost-button {
   border: 1px solid var(--line);
-  background: var(--card);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent),
+    var(--card);
+  box-shadow: 0 10px 24px rgba(68, 45, 18, 0.07);
 }
 
 .seal-button:hover,
 .ghost-button:hover,
 .answer-card:hover,
 .panel:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .text-button {
   padding: 10px 0;
   color: var(--gold-dark);
   font-weight: 800;
+  transition: color 160ms ease, transform 160ms ease;
 }
 
 .danger {
@@ -465,17 +632,27 @@ main {
 .process-card,
 .panel {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.26), transparent 42%),
     var(--card);
-  box-shadow: var(--shadow);
-  transition: transform 160ms ease;
+  box-shadow: var(--shadow), var(--inner-line);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  animation: pageRise 540ms ease both;
+}
+
+.panel:nth-child(2n) {
+  animation-delay: 60ms;
+}
+
+.panel:nth-child(3n) {
+  animation-delay: 110ms;
 }
 
 .process-card {
   grid-column: span 3;
   padding: 22px;
+  position: relative;
 }
 
 .process-card span {
@@ -486,6 +663,18 @@ main {
 .panel {
   grid-column: span 6;
   padding: clamp(22px, 4vw, 34px);
+  position: relative;
+}
+
+.panel::before,
+.process-card::before {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 1px;
+  background: color-mix(in srgb, var(--mode-accent) 45%, transparent);
+  content: "";
 }
 
 .wide-panel {
@@ -544,11 +733,11 @@ main {
   width: 100%;
   padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--text);
   text-align: left;
   background: var(--card-soft);
-  transition: transform 160ms ease, border-color 160ms ease;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
 .answer-card span {
@@ -567,15 +756,17 @@ main {
 .attempt {
   padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card-soft);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
+    var(--card-soft);
 }
 
 .stone-callout {
   margin-top: 16px;
   padding: 16px;
   border-left: 4px solid var(--mode-accent);
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--text);
   background: color-mix(in srgb, var(--mode-accent) 10%, var(--card-soft));
   line-height: 1.6;
@@ -591,6 +782,10 @@ main {
 .chart-wrap {
   width: 100%;
   min-height: 280px;
+  border-radius: 10px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 38%, transparent) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(0deg, color-mix(in srgb, var(--line) 28%, transparent) 1px, transparent 1px) 0 0 / 44px 44px;
 }
 
 .stack-list,
@@ -630,7 +825,9 @@ main {
   position: absolute;
   left: 0;
   color: var(--gold);
-  content: "—";
+  content: "◆";
+  font-size: 0.64rem;
+  transform: translateY(4px);
 }
 
 .action-panel {
@@ -718,7 +915,7 @@ main {
   margin: 0;
   white-space: pre-wrap;
   color: var(--text);
-  font: 500 0.95rem/1.8 Inter, sans-serif;
+  font: 500 1rem/1.8 "Alegreya Sans", sans-serif;
 }
 
 .code-toggle-grid {
@@ -739,6 +936,7 @@ main {
   background: var(--card-soft);
   color: var(--muted);
   font-weight: 800;
+  transition: transform 160ms ease, background 160ms ease;
 }
 
 .chip.active,
@@ -784,6 +982,11 @@ main {
     var(--card);
 }
 
+.decision-card h3,
+.lens-card h3 {
+  align-items: center;
+}
+
 .life-area-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -807,7 +1010,7 @@ main {
 .replay-panel,
 .snapshot-card {
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: clamp(24px, 5vw, 46px);
   background:
     radial-gradient(circle at 78% 14%, color-mix(in srgb, var(--mode-accent) 20%, transparent), transparent 16rem),
@@ -845,6 +1048,17 @@ main {
   font-size: 0.92rem;
 }
 
+@keyframes pageRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 920px) {
   .topbar {
     grid-template-columns: 1fr auto;
@@ -859,6 +1073,26 @@ main {
   .hero-grid {
     grid-template-columns: 1fr;
     min-height: auto;
+  }
+
+  h1 {
+    font-size: 5.2rem;
+  }
+
+  h2 {
+    font-size: 3.6rem;
+  }
+
+  .sanctuary-panel {
+    grid-template-columns: 1fr;
+    padding-bottom: 230px;
+  }
+
+  .oracle-dial {
+    position: absolute;
+    right: 28px;
+    bottom: 36px;
+    width: 190px;
   }
 
   .temple-scene {
@@ -891,7 +1125,15 @@ main {
   }
 
   h1 {
-    font-size: clamp(3.2rem, 18vw, 4.8rem);
+    font-size: 3.8rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 1.7rem;
   }
 
   .process-card,
@@ -925,5 +1167,36 @@ main {
   .seal-button,
   .ghost-button {
     width: 100%;
+  }
+
+  .topbar {
+    padding: 12px 14px;
+  }
+
+  .app-shell::before,
+  .app-shell::after {
+    display: none;
+  }
+
+  .sanctuary-panel {
+    min-height: 520px;
+    padding: 26px 20px 248px;
+  }
+
+  .sanctuary-ledger {
+    right: 18px;
+    bottom: 20px;
+    left: 18px;
+    width: auto;
+  }
+
+  .oracle-dial {
+    right: 24px;
+    bottom: 158px;
+    width: 116px;
+  }
+
+  .oracle-dial span {
+    font-size: 3rem;
   }
 }

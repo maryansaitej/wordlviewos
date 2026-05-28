@@ -2,19 +2,40 @@ import StackChart from "./StackChart";
 
 export default function CompanionHome({ behavioralScores, reflections, replay, contradictions, mode, onNavigate }) {
   const latest = reflections[reflections.length - 1];
+  const topStack = behavioralScores.stack.slice(0, 3);
 
   return (
     <section className="page-grid">
-      <div className="panel sanctuary-panel wide-panel">
-        <p className="eyebrow">Worldview OS</p>
-        <h2>Use philosophy to navigate life.</h2>
-        <p className="large-copy">
-          Your quiz is only the doorway. The operating system is built through daily reflections, choices, emotional patterns, resonant guidance, and the principles you actually practice.
-        </p>
-        <div className="hero-actions">
-          <button className="seal-button" onClick={() => onNavigate("reflection")}>Write Today’s Reflection</button>
-          <button className="ghost-button" onClick={() => onNavigate("decision")}>Open Decision Lens</button>
-          <button className="ghost-button" onClick={() => onNavigate("situations")}>Use Situation Lens</button>
+      <div className="sanctuary-panel wide-panel">
+        <div className="sanctuary-copy">
+          <p className="eyebrow">Worldview OS</p>
+          <h2>Use philosophy to navigate life.</h2>
+          <p className="large-copy">
+            Your quiz is only the doorway. The operating system is built through daily reflections, choices, emotional patterns, resonant guidance, and the principles you actually practice.
+          </p>
+          <div className="hero-actions">
+            <button className="seal-button" onClick={() => onNavigate("reflection")}>Write Today’s Reflection</button>
+            <button className="ghost-button" onClick={() => onNavigate("decision")}>Open Decision Lens</button>
+            <button className="ghost-button" onClick={() => onNavigate("situations")}>Use Situation Lens</button>
+          </div>
+        </div>
+
+        <div className="oracle-dial" aria-hidden="true">
+          <span>{mode.symbol}</span>
+          <i />
+          <i />
+          <i />
+        </div>
+
+        <div className="sanctuary-ledger">
+          <span className="manuscript-note">Current stack</span>
+          {topStack.map((item) => (
+            <div className="ledger-row" key={item.id}>
+              <span style={{ color: item.accent }}>{item.symbol}</span>
+              <p>{item.name}</p>
+              <strong>{item.percentage}%</strong>
+            </div>
+          ))}
         </div>
       </div>
 
